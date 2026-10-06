@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Open-air cinema, music and food under the stars. Join the waitlist for Movies under the stars & rave."
+    />
+    <meta name="theme-color" content="#fbfaf8" />
+    <title><%= title %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/png" href="/public/logo.png" />
+    <link rel="stylesheet" href="/index.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/js/all.min.js" defer></script>
+    <script src="/index.js" defer></script>
+  </head>
+  <body>
+    <div class="video-header-wrap">
+      <video class="page-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="/public/hero-video.mp4" type="video/mp4" />
+      </video>
+
+      <header class="topbar" aria-label="Main header">
+        <div class="brand-wrap">
+          <img src="/public/logo.png" alt="Movies under the stars and rave logo" class="brand-logo" />
+          <span class="brand-text">Movies & rave</span>
+        </div>
+      </header>
+
+      <main class="page-shell">
+        <div class="ambient-glow" aria-hidden="true"></div>
+
+        <section class="landing-card hero-panel" aria-labelledby="page-title">
+          <div class="hero-content">
+            <h1 class="headline" id="page-title">
+              <span class="headline-line">Movies.</span>
+              <span class="headline-line">
+                Music.
+                <span class="headline-accent" aria-hidden="true">
+                  <img src="/public/district.png" alt="" class="headline-accent-image" />
+                </span>
+                Food.
+              </span>
+            </h1>
+
+            <p class="intro">
+              <strong>An open-air cinema experience in Eke this December </strong>
+              <strong>gather under the stars to watch the movies you love.</strong>
+              We're bringing the best selections to <strong>Eke Udi LGA</strong>, from blockbusters to comedy, romance, action and fantasy on a big screen outdoors in the heart of our community.
+            </p>
+
+            <form class="waitlist-form" id="waitlist-form">
+              <label class="visually-hidden" for="email">Email address</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+              />
+              <button type="submit">Count me in</button>
+            </form>
+            <p class="form-note" id="form-note" aria-live="polite">
+              Be the first to know when tickets are on sale.
+            </p>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <section class="info-band solid-panel" aria-label="Event highlights">
+      <div class="section-header">
+        <h2>Community Movie Night 2026</h2>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Open-air cinema</h3>
+          <p>Big  showing the selection under the sky with lounge seating, burn fires and a warm festival feel.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Live music</h3>
+          <p>Curated soundtracks and DJ sets keep the atmosphere vibrant before and after the show.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Food & drinks</h3>
+          <p>Street food favourites, refreshing drinks, and late-night bites that keep the night going.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="schedule-band solid-panel" aria-label="Event schedule">
+      <div class="section-header align-left">
+        <!-- <span class="section-tag">What to Expect</span> -->
+        <h2>A night designed for good vibes</h2>
+      </div>
+
+      <div class="schedule-list">
+        <div class="schedule-item">
+          <span class="time" aria-label="6 PM">
+            <i class="fa-regular fa-clock"></i>
+          </span>
+          <div>
+            <h3>Blockbuster movies</h3>
+            <p>Check in, grab food, and settle into the lawn before sunset.</p>
+          </div>
+        </div>
+
+        <div class="schedule-item">
+          <span class="time" aria-label="7:30 PM">
+            <i class="fa-regular fa-clock"></i>
+          </span>
+          <div>
+            <h3>Romance & comedy</h3>
+            <p>The kind of story that makes you and the crowd go "aww" and at the same time have you laughing so hard.</p>
+          </div>
+        </div>
+
+        <div class="schedule-item">
+          <span class="time" aria-label="8:30 PM">
+            <i class="fa-solid fa-film"></i>
+          </span>
+          <div>
+            <h3>Action & adventure</h3>
+            <p>Movies that make you cheer out loud. Explosions, chases, and heroes.</p>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <span class="time" aria-label="Music">
+            <i class="fa-solid fa-music"></i>
+          </span>
+          <div>
+            <h3>Music & DJ entertainment</h3>
+            <p>Music from the moment gates open. Afrobeats, highlife and even live bands.</p>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <span class="time" aria-label="Photo moment">
+            <i class="fa-solid fa-camera"></i>
+          </span>
+          <div>
+            <h3>Red carpet</h3>
+            <p>A photo spot worthy of the night.</p>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <span class="time" aria-label="Food and drinks">
+            <i class="fa-solid fa-utensils"></i>
+          </span>
+          <div>
+            <h3>Food & refreshments</h3>
+            <p>Enjoy a premium outdoor cinema experience refreshments love suya, grilled corn, small chops, soft drinks, water and more.</p>
+          </div>
+        </div>
+        <div class="schedule-item">
+          <span class="time" aria-label="Community fun">
+            <i class="fa-solid fa-people-group"></i>
+          </span>
+          <div>
+            <h3>Family & community fun</h3>
+            <p>Host to keep your energy up, introductions, shout-outs, and moments that bring the crowd together.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band solid-panel" aria-label="Event location and call to action">
+      <div class="cta-copy">
+        <span class="section-tag">This December</span>
+        <h2>Bring your crew and settle in for a night under the stars.</h2>
+      </div>
+      <a class="primary-cta" href="#waitlist-form">Join the list</a>
+    </section>
+
+    <footer class="site-footer solid-panel">
+      <div class="footer-inner">
+        <p class="footer-copy">Movies under the stars & rave</p>
+
+        <nav class="social-links" aria-label="Social media">
+          <a class="social-link" href="https://twitter.com/designflow" aria-label="DesignFlow on X" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 15.6 6.4 22H3.2l7.3-8.4L2.8 2h6.4l4.5 6 5.2-6Zm-1.1 18h1.7L8.3 3.9H6.5L17.8 20Z" />
+            </svg>
+          </a>
+          <a class="social-link" href="https://instagram.com/designflow" aria-label="DesignFlow on Instagram" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+          <a class="social-link" href="https://facebook.com/designflow" aria-label="DesignFlow on Facebook" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M13.4 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2h-2.8V13H10v8h3.4Z" />
+            </svg>
+          </a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
