@@ -66,6 +66,9 @@
             <p class="form-note" id="form-note" aria-live="polite">
               Be the first to know when tickets are on sale.
             </p>
+            <button class="survey-resume-button" id="resume-survey" type="button" hidden>
+              Continue your survey
+            </button>
           </div>
         </section>
       </main>
@@ -89,6 +92,27 @@
           <h3>Food & drinks</h3>
           <p>Street food favourites, refreshing drinks, and late-night bites that keep the night going.</p>
         </article>
+      </div>
+    </section>
+
+    <section class="artist-band solid-panel" aria-labelledby="featured-artist-title">
+      <div class="featured-artist">
+        <div class="featured-artist-image">
+          <img src="/public/son-tung.jpeg" alt="Sơn Tùng M-TP" />
+        </div>
+        <div class="featured-artist-copy">
+          <p class="section-tag">Movies under the stars</p>
+          <h2 id="featured-artist-title">Eke Movie Night</h2>
+          <p class="featured-artist-role">An outdoor cinema experience, community celebration and live music night</p>
+          <p>
+            Bring your family, friends and loved ones for a memorable evening of blockbuster
+            movies, Nigerian favourites, great music, delicious food and refreshing drinks under the stars.
+          <!-- </p>
+          <ul class="featured-artist-details" aria-label="Movie night details">
+            <li><span>Location</span><strong>Eke, Enugu State</strong></li>
+            <li><span>Experience</span><strong>Movies, food &amp; community rave</strong></li>
+          </ul> -->
+        </div>
       </div>
     </section>
 
@@ -172,33 +196,267 @@
         <span class="section-tag">This December</span>
         <h2>Bring your crew and settle in for a night under the stars.</h2>
       </div>
-      <a class="primary-cta" href="#waitlist-form">Join the list</a>
+      <div class="cta-actions">
+        <form class="waitlist-form cta-waitlist-form" id="cta-waitlist-form">
+          <label class="visually-hidden" for="cta-email">Email address</label>
+          <input
+            id="cta-email"
+            name="email"
+            type="email"
+            placeholder="Enter your email"
+            autocomplete="email"
+            required
+          />
+          <button type="submit">Join the list</button>
+        </form>
+        <p class="form-note cta-form-note" id="cta-form-note" aria-live="polite"></p>
+      </div>
     </section>
 
     <footer class="site-footer solid-panel">
       <div class="footer-inner">
         <p class="footer-copy">Movies under the stars & rave</p>
 
-        <nav class="social-links" aria-label="Social media">
-          <a class="social-link" href="https://twitter.com/designflow" aria-label="DesignFlow on X" target="_blank" rel="noopener noreferrer">
+        <!-- <nav class="social-links" aria-label="Social media">
+          <a class="social-link" href="https://twitter.com/" aria-label="DesignFlow on X" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 15.6 6.4 22H3.2l7.3-8.4L2.8 2h6.4l4.5 6 5.2-6Zm-1.1 18h1.7L8.3 3.9H6.5L17.8 20Z" />
             </svg>
           </a>
-          <a class="social-link" href="https://instagram.com/designflow" aria-label="DesignFlow on Instagram" target="_blank" rel="noopener noreferrer">
+          <a class="social-link" href="https://instagram.com/" aria-label="DesignFlow on Instagram" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
               <rect x="3" y="3" width="18" height="18" rx="5" />
               <circle cx="12" cy="12" r="4" />
               <circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none" />
             </svg>
           </a>
-          <a class="social-link" href="https://facebook.com/designflow" aria-label="DesignFlow on Facebook" target="_blank" rel="noopener noreferrer">
+          <a class="social-link" href="https://facebook.com/" aria-label="DesignFlow on Facebook" target="_blank" rel="noopener noreferrer">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M13.4 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.5 1.6-1.5h1.7V3.7c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2h-2.8V13H10v8h3.4Z" />
             </svg>
           </a>
-        </nav>
+        </nav> -->
       </div>
     </footer>
+
+    <dialog class="survey-dialog" id="survey-dialog" aria-labelledby="survey-title" aria-describedby="survey-description">
+      <div class="survey-header">
+        <p class="section-tag">One quick survey</p>
+        <h2 id="survey-title">Help us plan your night</h2>
+        <p id="survey-description">Your spot is saved. Tell us what you’d most enjoy at the event.</p>
+      </div>
+
+      <form class="survey-form" id="survey-form">
+        <fieldset class="survey-section">
+          <legend>Your contact info</legend>
+          <label for="survey-name">Name</label>
+          <input id="survey-name" name="name" type="text" autocomplete="name" maxlength="100" required />
+
+          <label for="survey-phone">Phone/WhatsApp number</label>
+          <input id="survey-phone" name="phone" type="tel" autocomplete="tel" maxlength="32" required />
+
+          <label for="survey-email">Email address</label>
+          <input id="survey-email" name="email" type="email" autocomplete="email" maxlength="150" required />
+
+          <label for="survey-age">Age range</label>
+          <select id="survey-age" name="ageRange" required>
+            <option value="">Choose an age range</option>
+            <option>Under 18</option>
+            <option>18–24</option>
+            <option>25–34</option>
+            <option>35–44</option>
+            <option>45–54</option>
+            <option>55+</option>
+          </select>
+
+        </fieldset>
+
+        <fieldset class="survey-section">
+          <legend>When can you come?</legend>
+          <label for="preferred-date">Preferred date</label>
+          <select id="preferred-date" name="preferredDate" required>
+            <option value="">Choose a date</option>
+            <option>Any date works for me</option>
+            <option>26 December 2026</option>
+            <option>27 December 2026</option>
+            <option>28 December 2026</option>
+            <option>29 December 2026</option>
+            <option>30 December 2026</option>
+            <option>31 December 2026</option>
+            <option>1 January 2027</option>
+            <option>2 January 2027</option>
+          </select>
+
+          <fieldset class="survey-choice-group">
+            <legend>Would starting around 9pm work for you?</legend>
+            <label><input type="radio" name="eveningStart" value="yes" /> Yes</label>
+            <label><input type="radio" name="eveningStart" value="no" /> No</label>
+            <label><input type="radio" name="eveningStart" value="depends" /> Depends on the day</label>
+          </fieldset>
+        </fieldset>
+
+        <fieldset class="survey-section">
+          <legend>Movies and rave</legend>
+          <fieldset class="survey-choice-group">
+            <legend>Which movie genres would you enjoy?</legend>
+            <label><input type="checkbox" name="movieGenres" value="Hollywood blockbusters" /> Hollywood blockbusters</label>
+            <label><input type="checkbox" name="movieGenres" value="Nollywood favourites" /> Nollywood favourites</label>
+            <label><input type="checkbox" name="movieGenres" value="Comedy" /> Comedy</label>
+            <label><input type="checkbox" name="movieGenres" value="Romance" /> Romance</label>
+            <label><input type="checkbox" name="movieGenres" value="Action & adventure" /> Action & adventure</label>
+            <label><input type="checkbox" name="movieGenres" value="Fantasy & supernatural" /> Fantasy & supernatural</label>
+            <label><input type="checkbox" name="movieGenres" value="Sci-fi" /> Sci-fi</label>
+            <label><input type="checkbox" name="movieGenres" value="Thriller & suspense" /> Thriller & suspense</label>
+            <label><input type="checkbox" name="movieGenres" value="Family / animation" /> Family / animation</label>
+            <label><input type="checkbox" name="movieGenres" value="Classic old-school films" /> Classic old-school films</label>
+          </fieldset>
+
+          <fieldset class="survey-choice-group">
+            <legend>Would you like Nigerian movies included?</legend>
+            <label><input type="radio" name="nollywood" value="yes" /> Yes, definitely</label>
+            <label><input type="radio" name="nollywood" value="maybe" /> Maybe one or two</label>
+            <label><input type="radio" name="nollywood" value="no" />No, Keep it international</label>
+            <label><input type="radio" name="nollywood" value="dont-mind" /> I don’t mind</label>
+          </fieldset>
+
+          <label for="survey-movies">Any movie you’d like to see?</label>
+          <textarea id="survey-movies" name="movies" rows="2" maxlength="500" placeholder="Movie titles or genres"></textarea>
+
+          <fieldset class="survey-choice-group">
+            <legend>Marvel or DC Comics?</legend>
+            <label><input type="radio" name="marvelOrDcComics" value="Marvel" /> Marvel</label>
+            <label><input type="radio" name="marvelOrDcComics" value="DC Comics" /> DC Comics</label>
+            <label><input type="radio" name="marvelOrDcComics" value="Both" /> Both are great</label>
+            <label><input type="radio" name="marvelOrDcComics" value="Neither" /> Neither</label>
+          </fieldset>
+
+          <fieldset class="survey-choice-group">
+            <legend>Spider-Man or Batman?</legend>
+            <label><input type="radio" name="spidermanOrBatman" value="Spider-Man" /> Spider-Man</label>
+            <label><input type="radio" name="spidermanOrBatman" value="Batman" /> Batman</label>
+            <label><input type="radio" name="spidermanOrBatman" value="Both" /> Both</label>
+            <label><input type="radio" name="spidermanOrBatman" value="Someone else" /> Someone else</label>
+          </fieldset>
+
+          <fieldset class="survey-choice-group">
+            <legend>Which kind of Nigerian movie night are you here for?</legend>
+            <label><input type="radio" name="nigerianMovieStyle" value="Funny old-school classics" /> Funny old-school classics</label>
+            <label><input type="radio" name="nigerianMovieStyle" value="New drama-filled movies" /> New drama-filled movies</label>
+            <label><input type="radio" name="nigerianMovieStyle" value="Both" /> Both — I’ll take the whole vibe</label>
+          </fieldset>
+
+          <fieldset class="survey-choice-group">
+            <legend>Which music genres do you enjoy?</legend>
+            <label><input type="checkbox" name="musicGenres" value="Afrobeats" /> Afrobeats</label>
+            <label><input type="checkbox" name="musicGenres" value="Amapiano" /> Amapiano</label>
+            <label><input type="checkbox" name="musicGenres" value="Highlife" /> Highlife</label>
+            <label><input type="checkbox" name="musicGenres" value="Igbo traditional / cultural music" /> Igbo traditional / cultural music</label>
+            <label><input type="checkbox" name="musicGenres" value="Old-school Nigerian classics" /> Old-school Nigerian classics</label>
+            <label><input type="checkbox" name="musicGenres" value="Gospel" /> Gospel</label>
+            <label><input type="checkbox" name="musicGenres" value="R&B / soul" /> R&B / soul</label>
+            <label><input type="checkbox" name="musicGenres" value="Hip-hop" /> Hip-hop</label>
+            <label><input type="checkbox" name="musicGenres" value="DJ mixes, any genre" /> DJ mixes, any genre</label>
+          </fieldset>
+
+          <fieldset class="survey-choice-group">
+            <legend>Davido or Wizkid?</legend>
+            <label><input type="radio" name="davidoOrWizkid" value="Davido" /> Davido</label>
+            <label><input type="radio" name="davidoOrWizkid" value="Wizkid" /> Wizkid</label>
+            <label><input type="radio" name="davidoOrWizkid" value="Phyno" /> Phyno</label>
+            <label><input type="radio" name="davidoOrWizkid" value="Both" /> Both</label>
+            <label><input type="radio" name="davidoOrWizkid" value="Something else" /> Play something else</label>
+          </fieldset>
+        </fieldset>
+
+        <fieldset class="survey-section">
+          <legend>Food, drinks and comfort</legend>
+          <fieldset class="survey-choice-group">
+            <legend>Which snacks would you enjoy?</legend>
+            <label><input type="checkbox" name="snacks" value="Popcorn" /> Popcorn</label>
+            <label><input type="checkbox" name="snacks" value="Small chops" /> Small chops</label>
+            <label><input type="checkbox" name="snacks" value="Suya" /> Suya</label>
+            <label><input type="checkbox" name="snacks" value="Grilled corn" /> Grilled corn</label>
+            <label><input type="checkbox" name="snacks" value="Peppered meat / kilishi" /> Peppered meat / kilishi</label>
+            <label><input type="checkbox" name="snacks" value="Shawarma" /> Shawarma</label>
+            <label><input type="checkbox" name="snacks" value="Ice cream" /> Ice cream</label>
+          </fieldset>
+
+          <fieldset class="survey-choice-group">
+            <legend>What would you like to drink?</legend>
+            <label><input type="checkbox" name="drinks" value="Soft drinks" /> Soft drinks</label>
+            <label><input type="checkbox" name="drinks" value="Water" /> Water</label>
+            <label><input type="checkbox" name="drinks" value="Zobo" /> Zobo</label>
+            <label><input type="checkbox" name="drinks" value="Chapman" /> Chapman</label>
+            <label><input type="checkbox" name="drinks" value="Palm wine" /> Palm wine</label>
+            <label><input type="checkbox" name="drinks" value="Beer" /> Beer</label>
+            <label><input type="checkbox" name="drinks" value="Malt" /> Malt</label>
+            <label><input type="checkbox" name="drinks" value="Mocktails" /> Mocktails</label>
+          </fieldset>
+
+          <fieldset class="survey-choice-group">
+            <legend>Would you be interested in VIP seating?</legend>
+            <label><input type="radio" name="vipSeating" value="yes" /> Yes, definitely</label>
+            <label><input type="radio" name="vipSeating" value="maybe" /> Maybe, depending on what’s included</label>
+            <label><input type="radio" name="vipSeating" value="no" /> No, general seating is fine</label>
+            <label><input type="radio" name="vipSeating" value="unsure" /> Not sure yet</label>
+          </fieldset>
+        </fieldset>
+
+        <fieldset class="survey-section">
+          <legend>Your group and tickets</legend>
+          <label for="survey-group-size">How many people would you potentially come with?</label>
+          <select id="survey-group-size" name="groupSize" required>
+            <option value="">Choose a group size</option>
+            <option>Just me</option>
+            <option>Me + 1</option>
+            <option>2 of us</option>
+            <option>3–5</option>
+            <option>6–10</option>
+            <option>More than 10</option>
+            <option>Not sure yet</option>
+          </select>
+
+          <fieldset class="survey-choice-group">
+            <legend>Who are you most likely to come with?</legend>
+            <label><input type="checkbox" name="companions" value="Friends" /> Friends</label>
+            <label><input type="checkbox" name="companions" value="Family" /> Family</label>
+            <label><input type="checkbox" name="companions" value="Partner" /> My partner</label>
+            <label><input type="checkbox" name="companions" value="Children" /> My children</label>
+            <label><input type="checkbox" name="companions" value="Colleagues" /> Colleagues</label>
+            <label><input type="checkbox" name="companions" value="Church or community group" /> Church / community group</label>
+            <label><input type="checkbox" name="companions" value="Alone" /> Alone</label>
+          </fieldset>
+
+          <label for="ticket-price">What general ticket price feels fair?</label>
+          <select id="ticket-price" name="ticketPrice">
+            <option value="">Choose if you have a preference</option>
+            <option>Under ₦1,000</option>
+            <option>₦1,000–₦2,000</option>
+            <option>₦2,000–₦5,000</option>
+            <option>₦5,000–₦10,000</option>
+            <option>Above ₦10,000</option>
+            <option>Prefer it to be free</option>
+          </select>
+
+          <label for="survey-contact-method">How should we contact you?</label>
+          <select id="survey-contact-method" name="contactMethod">
+            <option>WhatsApp</option>
+            <option>Phone call</option>
+            <option>SMS</option>
+            <option>Email</option>
+            <option>Any of the above</option>
+          </select>
+
+          <label for="survey-comments">Anything else you’d like us to know? <span>(optional)</span></label>
+          <textarea id="survey-comments" name="comments" rows="3" maxlength="500" placeholder="Suggestions, ideas or questions"></textarea>
+        </fieldset>
+
+        <p class="survey-note" id="survey-note" aria-live="polite"></p>
+        <div class="survey-actions">
+          <button class="survey-skip" id="survey-skip" type="button">Cancel</button>
+          <button class="survey-submit" type="submit">Send answers</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>

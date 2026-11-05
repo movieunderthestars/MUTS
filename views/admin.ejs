@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0b0f" />
+    <title><%= title %></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="/index.css" />
+  </head>
+  <body class="admin-page">
+    <header class="admin-header">
+      <a class="admin-brand" href="/" aria-label="Movies under the stars home">
+        <img src="/public/logo.png" alt="Movies under the stars and rave logo" class="brand-logo" />
+        <span>Movies under the stars</span>
+      </a>
+      <a class="admin-public-link" href="/">Home</a>
+    </header>
+
+    <main class="admin-shell">
+      <div class="admin-heading-row">
+        <div>
+          <p class="admin-eyebrow">Waitlist / <%= storageSource %></p>
+          <h1>Event responses</h1>
+        </div>
+        <p class="admin-updated"><%= new Date().toLocaleString() %></p>
+      </div>
+      <% if (notice === "reminder-sent") { %>
+        <p class="admin-notice" role="status">Survey reminder sent.</p>
+      <% } else if (notice === "entry-deleted") { %>
+        <p class="admin-notice" role="status">Waitlist entry deleted.</p>
+      <% } else if (notice.startsWith("tickets-notification-sent:")) { %>
+        <p class="admin-notice" role="status">Tickets-on-sale email sent to <%= notice.split(":")[1] %> subscribers.</p>
+      <% } else if (notice.startsWith("tickets-notification-partial:")) { %>
+        <% const notificationNotice = notice.split(":"); %>
+        <p class="admin-notice" role="status">Sent <%= notificationNotice[1] %> emails; <%= notificationNotice[2] %> failed.</p>
+      <% } else if (notice.startsWith("survey-reminders-sent:")) { %>
+        <% const reminderNotice = notice.split(":"); %>
+        <p class="admin-notice" role="status">Survey reminder sent to <%= reminderNotice[1] %> people; <%= reminderNotice[2] %> failed.</p>
+      <% } %>
+
+      <section class="admin-notification">
+        <div>
+          <h2>Tickets announcement</h2>
+          <p>Email everyone on the waitlist that tickets are now on sale.</p>
+        </div>
+        <div class="admin-notification-actions">
+          <form action="/admin/tickets-notification" method="post" onsubmit="return confirm('Send the tickets-on-sale email to all waitlist subscribers?');">
+            <button class="admin-notification-button" type="submit">Notify waitlist</button>
+          </form>
+          <form action="/admin/incomplete-survey-reminders" method="post" onsubmit="return confirm('Send a survey reminder to everyone with an incomplete survey?');">
+            <button class="admin-notification-button admin-notification-button--secondary" type="submit">Remind incomplete surveys</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="admin-metrics" aria-label="Waitlist summary">
+        <div class="admin-metric">
+          <span>Total signups</span>
+          <strong><%= stats.signups %></strong>
+        </div>
+        <div class="admin-metric">
+          <span>Survey responses</span>
+          <strong><%= stats.responses %></strong>
+        </div>
+        <div class="admin-metric">
+          <span>VIP interest</span>
+          <strong><%= stats.vipInterest %></strong>
+        </div>
+        <div class="admin-metric">
+          <span>Food/drinks interest</span>
+          <strong><%= stats.packageInterest %></strong>
+        </div>
+        <div class="admin-metric">
+          <span>Estimated attendance</span>
+          <strong><%= stats.estimatedAttendance %></strong>
+        </div>
+        <div class="admin-metric">
+          <span>Survey completion</span>
+          <strong><%= stats.completionRate %>%</strong>
+        </div>
+      </section>
+
+      <section class="admin-charts" aria-label="Survey charts">
+        <% const chartGroups = [
+          ["Top movie genres", insights.movieGenres, "red"],
+          ["Top music genres", insights.musicGenres, "purple"],
+          ["Davido vs Wizkid vs Phyno", insights.davidoOrWizkid, "green"]
+        ]; %>
+        <% chartGroups.forEach(([chartTitle, chartValues]) => { %>
+          <% const visibleValues = chartValues.slice(0, 5); %>
+          <% const chartTotal = visibleValues.reduce((total, [, count]) => total + count, 0); %>
+          <% const pieColors = ["#e5484d", "#8068ea", "#35b54a", "#f0b429", "#4dabf7"]; %>
+          <% let pieAngle = 0; %>
+          <% const pieSegments = visibleValues.map(([, count], index) => { const start = pieAngle; pieAngle += (count / chartTotal) * 360; return `${pieColors[index]} ${start.toFixed(1)}deg ${pieAngle.toFixed(1)}deg`; }).join(", "); %>
+          <article class="admin-chart-card">
+            <div class="admin-chart-heading">
+              <h2><%= chartTitle %></h2>
+              <span><%= chartTotal %> choices</span>
+            </div>
+            <% if (visibleValues.length === 0) { %>
+              <p class="admin-no-data">No responses yet</p>
+            <% } else { %>
+              <div class="admin-pie-chart-wrap">
+                <div class="admin-pie-chart" style="background: conic-gradient(<%= pieSegments %>)" role="img" aria-label="<%= chartTitle %> pie chart"></div>
+                <ul class="admin-pie-legend">
+                  <% visibleValues.forEach(([label, count], index) => { %>
+                    <li>
+                      <span class="admin-pie-key" style="background: <%= pieColors[index] %>"></span>
+                      <span><%= label %></span>
+                      <strong><%= count %> (<%= Math.round((count / chartTotal) * 100) %>%)</strong>
+                    </li>
+                  <% }); %>
+                </ul>
+              </div>
+            <% } %>
+          </article>
+        <% }); %>
+      </section>
+
+      <section class="admin-insights" aria-label="Survey insights">
+        <% const insightGroups = [
+          ["Preferred dates", insights.preferredDates],
+          ["Top locations", insights.locations],
+          ["Movie genres", insights.movieGenres],
+          ["Music genres", insights.musicGenres],
+          ["Popular snacks", insights.snacks],
+          ["Popular drinks", insights.drinks],
+          ["Marvel vs DC Comics", insights.movieUniverses],
+          ["Spider-Man vs Batman", insights.superheroChoices],
+          ["Davido vs Wizkid vs Phyno", insights.davidoOrWizkid],
+          ["Nigerian movie style", insights.nigerianMovieStyles],
+          ["Fair ticket prices", insights.ticketPrices],
+          ["Evening start preference", insights.eveningInterest],
+          ["Nigerian movie interest", insights.nollywoodInterest],
+          ["Likely companions", insights.companions],
+          ["Ticket likelihood", insights.ticketLikelihood]
+        ]; %>
+        <% insightGroups.forEach(([title, values]) => { %>
+          <article class="admin-insight-card">
+            <h2><%= title %></h2>
+            <% if (values.length === 0) { %>
+              <p class="admin-no-data">No responses yet</p>
+            <% } else { %>
+              <ul>
+                <% values.slice(0, 5).forEach(([label, count]) => { %>
+                  <li><span><%= label %></span><strong><%= count %></strong></li>
+                <% }); %>
+              </ul>
+            <% } %>
+          </article>
+        <% }); %>
+      </section>
+
+      <section class="admin-records" aria-labelledby="records-title">
+        <div class="admin-records-heading">
+          <h2 id="records-title">Waitlist and survey responses</h2>
+          <span><%= entries.length %> records</span>
+        </div>
+        <div class="admin-table-wrap" tabindex="0" aria-label="Scrollable waitlist responses">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone/WhatsApp</th>
+                <th scope="col">Age</th>
+                <th scope="col">Preferred date</th>
+                <th scope="col">Movies</th>
+                <th scope="col">Group size</th>
+                <th scope="col">VIP seating</th>
+                <th scope="col">Food/drinks</th>
+                <th scope="col">Joined</th>
+                <th scope="col">Survey reminder</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (entries.length === 0) { %>
+                <tr>
+                  <td class="admin-empty" colspan="11">No waitlist signups yet.</td>
+                </tr>
+              <% } %>
+              <% entries.forEach((entry) => { const survey = entry.survey || {}; %>
+                <tr>
+                  <td><%= survey.name || "—" %></td>
+                  <td><%= entry.email %></td>
+                  <td><%= survey.phone || "—" %></td>
+                  <td><%= survey.ageRange || survey.age || "—" %></td>
+                  <td><%= survey.preferredDate || "—" %></td>
+                  <td class="admin-movies"><%= survey.movies || "—" %></td>
+                  <td><%= survey.groupSize || "—" %></td>
+                  <td><%= survey.vipSeating ? survey.vipSeating === "unsure" ? "Not sure" : survey.vipSeating : "—" %></td>
+                  <td><%= survey.foodDrinks ? survey.foodDrinks === "unsure" ? "Not sure" : survey.foodDrinks : "—" %></td>
+                  <td><%= entry.createdAt ? new Date(entry.createdAt).toLocaleDateString() : "—" %></td>
+                  <td>
+                    <div class="admin-row-actions">
+                      <button class="admin-view-button" type="button" onclick="document.getElementById('details-<%= entries.indexOf(entry) %>').showModal()">View details</button>
+                      <% if (!survey.name) { %>
+                        <form action="/admin/reminders" method="post">
+                          <input type="hidden" name="email" value="<%= entry.email %>" />
+                          <button class="admin-reminder-button" type="submit">Send reminder</button>
+                        </form>
+                      <% } else { %>
+                        <span>Complete</span>
+                      <% } %>
+                      <form action="/admin/entries/delete" method="post" onsubmit="return confirm('Delete this waitlist entry permanently?');">
+                        <input type="hidden" name="email" value="<%= entry.email %>" />
+                        <button class="admin-delete-button" type="submit">Delete</button>
+                      </form>
+                    </div>
+                  </td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <% entries.forEach((entry, entryIndex) => { const survey = entry.survey || {}; %>
+        <dialog class="admin-detail-dialog" id="details-<%= entryIndex %>">
+          <div class="admin-detail-header">
+            <div>
+              <p class="admin-eyebrow">Survey response</p>
+              <h2><%= survey.name || entry.email %></h2>
+            </div>
+            <button class="admin-detail-close" type="button" onclick="this.closest('dialog').close()" aria-label="Close">×</button>
+          </div>
+          <dl class="admin-detail-list">
+            <div><dt>Email</dt><dd><%= entry.email %></dd></div>
+            <div><dt>Joined</dt><dd><%= entry.createdAt ? new Date(entry.createdAt).toLocaleString() : "—" %></dd></div>
+            <% Object.entries(survey).forEach(([key, value]) => { %>
+              <% if (key !== "completedAt") { %>
+                <div>
+                  <dt><%= key.replace(/([A-Z])/g, ' $1').replace(/^./, (letter) => letter.toUpperCase()) %></dt>
+                  <dd><%= Array.isArray(value) ? value.join(", ") : (value === "" || value == null ? "—" : value) %></dd>
+                </div>
+              <% } %>
+            <% }); %>
+          </dl>
+          <div class="admin-detail-actions">
+            <% if (!survey.name) { %>
+              <form action="/admin/reminders" method="post">
+                <input type="hidden" name="email" value="<%= entry.email %>" />
+                <button class="admin-reminder-button" type="submit">Send reminder</button>
+              </form>
+            <% } %>
+            <form action="/admin/entries/delete" method="post" onsubmit="return confirm('Delete this waitlist entry permanently?');">
+              <input type="hidden" name="email" value="<%= entry.email %>" />
+              <button class="admin-delete-button" type="submit">Delete entry</button>
+            </form>
+          </div>
+        </dialog>
+      <% }); %>
+    </main>
+  </body>
+</html>
