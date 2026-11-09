@@ -85,7 +85,6 @@
       <section class="admin-charts" aria-label="Survey charts">
         <% const chartGroups = [
           ["Top movie genres", insights.movieGenres, "red"],
-          ["Top music genres", insights.musicGenres, "purple"],
           ["Davido vs Wizkid vs Phyno", insights.davidoOrWizkid, "green"]
         ]; %>
         <% chartGroups.forEach(([chartTitle, chartValues]) => { %>
@@ -124,10 +123,8 @@
           ["Preferred dates", insights.preferredDates],
           ["Top locations", insights.locations],
           ["Movie genres", insights.movieGenres],
-          ["Music genres", insights.musicGenres],
           ["Popular snacks", insights.snacks],
           ["Popular drinks", insights.drinks],
-          ["Marvel vs DC Comics", insights.movieUniverses],
           ["Spider-Man vs Batman", insights.superheroChoices],
           ["Davido vs Wizkid vs Phyno", insights.davidoOrWizkid],
           ["Nigerian movie style", insights.nigerianMovieStyles],
