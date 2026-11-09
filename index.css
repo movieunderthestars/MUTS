@@ -1048,7 +1048,20 @@ a {
   gap: 16px;
 }
 
-.footer-copy {
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.footer-logo {
+  display: block;
+  width: 80px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.footer-brand-text {
   margin: 0;
   color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
@@ -1656,9 +1669,9 @@ a {
     padding: 22px 18px;
   }
 
-  .footer-copy {
-    font-size: 12px;
-    letter-spacing: 0.05em;
+  .footer-logo {
+    width: 68px;
+    height: 50px;
   }
 
   .site-footer {
