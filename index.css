@@ -90,8 +90,8 @@ a {
 }
 
 .brand-logo {
-  width: 44px;
-  height: 34px;
+  width: 22px;
+  height: 22px;
   object-fit: contain;
   display: block;
 }
@@ -99,7 +99,7 @@ a {
 .brand-text {
   color: #fff;
   font-family: "Pacifico", cursive;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -1056,8 +1056,8 @@ a {
 
 .footer-logo {
   display: block;
-  width: 80px;
-  height: 60px;
+  width: 40px;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -1564,7 +1564,7 @@ a {
   }
 
   .brand-text {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .page-shell {
@@ -1670,8 +1670,8 @@ a {
   }
 
   .footer-logo {
-    width: 68px;
-    height: 50px;
+    width: 34px;
+    height: 26px;
   }
 
   .site-footer {
